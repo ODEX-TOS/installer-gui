@@ -28,16 +28,18 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         model/disk.cpp \
-        model/encryption.cpp \
+        model/encryptedpartitions.cpp \
         model/logicvolme.cpp \
-        model/partition.cpp
+        model/partition.cpp \
+        model/resizepartition.cpp
 
 HEADERS += \
         mainwindow.h \
         model/disk.h \
-        model/encryption.h \
-        model/logicvolme.h \
-        model/partition.h
+        model/encryptedpartitions.h \
+        model/logicvolume.h \
+        model/partition.h \
+        model/resizepartition.h
 
 FORMS += \
         mainwindow.ui
@@ -46,3 +48,13 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    config/config.yaml \
+    config/packages.txt \
+    config/rootinstall.sh \
+    config/standard.yaml \
+    config/userinstall.sh \
+    config/wayland.txt \
+    config/yay.txt \
+    config/yayinstall.sh
