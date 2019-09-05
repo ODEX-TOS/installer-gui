@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        diskoptions.cpp \
         main.cpp \
         mainwindow.cpp \
         model/disk.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
         model/resizepartition.cpp
 
 HEADERS += \
+        diskoptions.h \
         mainwindow.h \
         model/disk.h \
         model/encryptedpartitions.h \

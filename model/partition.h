@@ -31,7 +31,7 @@ namespace model {
         int getOffset();
         virtual bool isEncrypted(){return false;}
         virtual bool isResizable(){return false;}
-        virtual ~partition();
+        virtual ~partition(){}
     private:
        // general stuff
        QString name;
