@@ -16,6 +16,7 @@ namespace model {
         QString getKeymap();
         QString getRootPWD();
         QString getHostname();
+        QString toYaml();
 
     private:
         // always provide a local

@@ -23,4 +23,13 @@ namespace model {
         return this->shell;
     }
 
+    QString user::toYaml(){
+        return "\t- users:\n"
+               "\t\t user:\n"
+               "\t\t\tname: " + this->name + "\n"
+               "\t\t\tpassword: " + this->password + "\n";
+
+    }
+
+
 }

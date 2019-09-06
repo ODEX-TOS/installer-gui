@@ -40,6 +40,8 @@ Window {
             text: qsTr("Finished")
             onClicked: {
                 yaml.setNetwork("hello", "hi")
+                yaml.setSystem("en_US.UTF-8", "be-latin1", "123", "tos")
+                yaml.setUser("alpha", "123")
                 console.log(yaml.getConfig())
             }
         }

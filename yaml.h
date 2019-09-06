@@ -15,13 +15,14 @@ public:
     explicit yaml(QObject *parent = nullptr);
     // return a full yaml config
     Q_INVOKABLE QString getConfig(){
-        return this->data;
+        return this->data + this->getStandard();
     }
 
     Q_INVOKABLE void setDisk(QString device, QString size, bool bIsGPT, bool bIsNewPartitionTable, std::vector<model::partition> partitions);
     Q_INVOKABLE void setNetwork(QString ssid, QString password);
     Q_INVOKABLE void setSystem(QString local, QString keymap, QString rootpwd, QString hostname);
     Q_INVOKABLE void setUser(QString name, QString password);
+    QString getStandard();
 
 
 signals:

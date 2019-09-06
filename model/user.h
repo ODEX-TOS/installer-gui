@@ -14,6 +14,7 @@ namespace model {
         QString getName();
         QString getPassword();
         QString getShell();
+        QString toYaml();
 
     private:
         // The name of the user

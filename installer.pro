@@ -47,3 +47,13 @@ HEADERS += \
     model/system.h \
     model/user.h \
     yaml.h
+
+DISTFILES += \
+    config/config.yaml \
+    config/packages.txt \
+    config/rootinstall.sh \
+    config/standard.yaml \
+    config/userinstall.sh \
+    config/wayland.txt \
+    config/yay.txt \
+    config/yayinstall.sh
