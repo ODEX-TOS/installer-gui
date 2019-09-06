@@ -7,8 +7,8 @@ namespace  model {
     class resizePartition : partition
     {
     public:
-        resizePartition(QString name, QString mountpoint, EFilesystem filesystem, QString size);
-        resizePartition(QString name, QString mountpoint, EFilesystem filesystem, int offset, QString size);
+        resizePartition(QString name, QString mountpoint, QString filesystem, QString size);
+        resizePartition(QString name, QString mountpoint, QString filesystem, int offset, QString size);
         QString getSize();
         bool isResizable() override {return true;}
     private:

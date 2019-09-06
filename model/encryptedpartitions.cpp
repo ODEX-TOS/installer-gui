@@ -1,11 +1,11 @@
 #include "encryptedpartitions.h"
 
 namespace model {
-    encryptedPartitions::encryptedPartitions(QString name, QString mountpoint, EFilesystem filesystem, QString start, QString end, QString encryptionPassword, std::vector<model::logicvolume> logicvolumes) : partition(name, mountpoint, filesystem, start, end){
+    encryptedPartitions::encryptedPartitions(QString name, QString mountpoint, QString filesystem, QString start, QString end, QString encryptionPassword, std::vector<model::logicvolume> logicvolumes) : partition(name, mountpoint, filesystem, start, end){
         this->encryptionPassword = encryptionPassword;
         this->logicvolumes = logicvolumes;
     }
-    encryptedPartitions::encryptedPartitions(QString name, QString mountpoint, EFilesystem filesystem, QString start, QString end, int offset, QString encryptionPassword, std::vector<model::logicvolume> logicvolumes): partition(name, mountpoint, filesystem, start, end, offset){
+    encryptedPartitions::encryptedPartitions(QString name, QString mountpoint, QString filesystem, QString start, QString end, int offset, QString encryptionPassword, std::vector<model::logicvolume> logicvolumes): partition(name, mountpoint, filesystem, start, end, offset){
         this->encryptionPassword = encryptionPassword;
         this->logicvolumes = logicvolumes;
     }

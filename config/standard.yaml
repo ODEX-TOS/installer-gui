@@ -24,12 +24,12 @@
                     name: "yayinstall"
                     file: "yayinstall.sh"
 execution:
-- partitiontable: "#disk#" # device name of your disk
-- format: "#disk#" # device name of your disk
-- mount: "#disk#" # device name of your disk
-- bootstrap:
-- fstab:
-- chroot:
+ - partitiontable: "#disk#"
+ - format: "#disk#"
+ - mount: "#disk#"
+ - bootstrap:
+ - fstab:
+ - chroot:
     user: "root"
     steps:
       - systemsetup:
@@ -37,7 +37,7 @@ execution:
       - packages: "root"
       - script: "root"
       - bootloader: "#disk#" # device name of your disk
-- chroot:
+ - chroot:
     user: "#user#"
     steps:
       - script: "yayinstall"

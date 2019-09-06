@@ -17,10 +17,13 @@ QString getResourcesPath()
 
 yaml::yaml(QObject *parent) : QObject(parent)
 {
+    // initialize the disk array
+    this->disk = std::vector<model::disk>(0);
+    this->partitions = std::vector<std::vector<model::partition>>(1);
 }
 
-void yaml::setDisk(QString device, QString size, bool bIsGPT, bool bIsNewPartitionTable, std::vector<model::partition> partitions){
-    this->disk = model::disk(device, size, bIsGPT, bIsNewPartitionTable, partitions);
+void yaml::addDisk(QString device, QString size, bool bIsGPT, bool bIsNewPartitionTable,  unsigned long diskid){
+    this->disk.push_back(model::disk(device, size, bIsGPT, bIsNewPartitionTable, this->partitions[diskid]));
 }
 void yaml::setNetwork(QString ssid, QString password){
     this->network = model::network(ssid, password);
@@ -35,6 +38,15 @@ void yaml::setUser(QString name, QString password){
     this->data += this->user.toYaml();
 }
 
+void yaml::setData(){
+    // we can assume the disks vector exists since you are installing on at least one disk
+    QString disk = "\t-disks:\n";
+    for (model::disk item : this->disk) {
+        disk += item.toYaml();
+    }
+    this->data = "models:\n" + disk + this->network.toYaml() + this->system.toYaml() + this->user.toYaml() + "\n";
+}
+
 QString yaml::getStandard(){
     QFile file("/home/zeus/tos/installer-gui/config/standard.yaml");
     // if the file is not openend then this string is isn't changed
@@ -42,10 +54,58 @@ QString yaml::getStandard(){
     if(file.open(QIODevice::ReadOnly)) {
         data = file.readAll();
         // If multiple disks are used then the partitiontable, format and mount entries must be duplicated
-        data.replace("#disk#", "/dev/sda/replace");
-        data.replace("#user#", "user/replace");
+        data.replace(" - partitiontable: \"#disk#\"", this->partitionDisks());
+        data.replace(" - format: \"#disk#\"", this->mountDisks());
+        data.replace(" - mount: \"#disk#\"", this->formatDisks());
+        data.replace("#disk#", this->disk[0].getDevice());
+        data.replace("#user#", this->user.getName());
     }
     return data;
 }
 
+// add a partition to the partition disk, if such a disk doesn't exisit create one
+void yaml::addPartition(unsigned long disk, QString name, QString mountpoint, QString filesystem, QString start, QString end, int offset){
+    if (this->partitions.size() > disk){
+        this->partitions[disk].push_back(model::partition(name, mountpoint, filesystem, start, end, offset));
+        return;
+    }
+    while (this->partitions.size() < disk){
+        this->partitions.push_back(std::vector<model::partition>());
+    }
+    this->partitions[disk].push_back(model::partition(name, mountpoint, filesystem, start, end, offset));
+}
+// add a partition to the partition disk, if such a disk doesn't exisit create one
+void yaml::addPartition(unsigned long  disk, QString name, QString mountpoint, QString filesystem, QString start, QString end){
+    if (this->partitions.size() > disk){
+        this->partitions[disk].push_back(model::partition(name, mountpoint, filesystem, start, end));
+        return;
+    }
+    while (this->partitions.size() < disk){
+        this->partitions.push_back(std::vector<model::partition>());
+    }
+    this->partitions[disk].push_back(model::partition(name, mountpoint, filesystem, start, end));
+}
+
+
+QString yaml::partitionDisks(){
+    QString data = "";
+    for(model::disk item : this->disk){
+        data += " - partitiontable: \"" + item.getDevice() + "\"\n";
+    }
+    return data;
+}
+QString yaml::formatDisks(){
+    QString data = "";
+    for(model::disk item : this->disk){
+        data += " - format: \"" + item.getDevice() + "\"\n";
+    }
+    return data;
+}
+QString yaml::mountDisks(){
+    QString data = "";
+    for(model::disk item : this->disk){
+        data += " - mount: \"" + item.getDevice() + "\"\n";
+    }
+    return data;
+}
 

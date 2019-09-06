@@ -16,6 +16,7 @@ namespace model {
         bool isGPT();
         bool isNewPartitionTable();
         std::vector<model::partition> getPartitions();
+        QString toYaml();
     private:
         QString device;
         QString size;

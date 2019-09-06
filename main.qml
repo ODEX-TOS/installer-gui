@@ -42,6 +42,10 @@ Window {
                 yaml.setNetwork("hello", "hi")
                 yaml.setSystem("en_US.UTF-8", "be-latin1", "123", "tos")
                 yaml.setUser("alpha", "123")
+                yaml.addPartition(0, "boot", "/boot", "ext4", "1MiB", "200MiB");
+                yaml.addPartition(0, "offset", "/usr", "ext4", "97%", "100%", 5);
+                yaml.addDisk("/dev/sda", "499G", true, false, 0);
+                yaml.addDisk("/dev/sdb", "499G", true, false, 0);
                 console.log(yaml.getConfig())
             }
         }
