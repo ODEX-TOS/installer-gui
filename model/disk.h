@@ -9,6 +9,7 @@ namespace model {
     class disk
     {
     public:
+        disk(){}
         disk(QString device, QString size, bool bIsGPT, bool bIsNewPartitionTable, std::vector<model::partition> partitions);
         QString getDevice();
         QString getSize();
