@@ -10,19 +10,19 @@ namespace model {
     {
     public:
         disk(){}
-        disk(QString device, QString size, bool bIsGPT, bool bIsNewPartitionTable, std::vector<model::partition> partitions);
+        disk(QString device, QString size, bool bIsGPT, bool bIsNewPartitionTable, std::vector<model::partition*> partitions);
         QString getDevice();
         QString getSize();
         bool isGPT();
         bool isNewPartitionTable();
-        std::vector<model::partition> getPartitions();
+        std::vector<model::partition*> getPartitions();
         QString toYaml();
     private:
         QString device;
         QString size;
         bool bIsGPT;
         bool bIsNewPartitionTable;
-        std::vector<model::partition> partitions;
+        std::vector<model::partition*> partitions;
     };
 }
 

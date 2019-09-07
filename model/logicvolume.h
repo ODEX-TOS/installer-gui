@@ -11,6 +11,7 @@ namespace model {
         QString getName();
         QString getSize();
         QString getMountPoint();
+        QString toYaml();
     private:
         QString name;
         QString size;

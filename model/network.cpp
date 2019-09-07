@@ -13,8 +13,8 @@ namespace model {
     }
     QString network::toYaml(){
         return "\t- network:\n"
-               "\t\tssid: " + this->ssid + "\n"
-               "\t\tpassword: " + this->password + "\n";
+               "\t\tssid: \"" + this->ssid + "\"\n"
+               "\t\tpassword: \"" + this->password + "\"\n";
     }
 
 }

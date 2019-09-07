@@ -44,6 +44,13 @@ Window {
                 yaml.setUser("alpha", "123")
                 yaml.addPartition(0, "boot", "/boot", "ext4", "1MiB", "200MiB");
                 yaml.addPartition(0, "offset", "/usr", "ext4", "97%", "100%", 5);
+                yaml.addResizePartition(0, "test", "/test", "ext4", "100GB");
+
+                yaml.addLogicVolume(0, "root", "200GB", "/");
+                yaml.addLogicVolume(0, "home", "200GB", "/home");
+                yaml.addEncryptionPartition(0,0, "abc", "root", "/", "200MiB", "100%");
+
+
                 yaml.addDisk("/dev/sda", "499G", true, false, 0);
                 yaml.addDisk("/dev/sdb", "499G", true, false, 0);
                 console.log(yaml.getConfig())

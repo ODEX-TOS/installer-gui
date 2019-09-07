@@ -19,7 +19,8 @@ yaml::yaml(QObject *parent) : QObject(parent)
 {
     // initialize the disk array
     this->disk = std::vector<model::disk>(0);
-    this->partitions = std::vector<std::vector<model::partition>>(1);
+    this->partitions = std::vector<std::vector<model::partition*>>(1);
+    this->volumes = std::vector<std::vector<model::logicvolume>>(1);
 }
 
 void yaml::addDisk(QString device, QString size, bool bIsGPT, bool bIsNewPartitionTable,  unsigned long diskid){
@@ -48,6 +49,7 @@ void yaml::setData(){
 }
 
 QString yaml::getStandard(){
+    // TODO: Move these files to a global state eg /usr/share, to be defined
     QFile file("/home/zeus/tos/installer-gui/config/standard.yaml");
     // if the file is not openend then this string is isn't changed
     QString data = "Error";
@@ -65,25 +67,79 @@ QString yaml::getStandard(){
 
 // add a partition to the partition disk, if such a disk doesn't exisit create one
 void yaml::addPartition(unsigned long disk, QString name, QString mountpoint, QString filesystem, QString start, QString end, int offset){
-    if (this->partitions.size() > disk){
-        this->partitions[disk].push_back(model::partition(name, mountpoint, filesystem, start, end, offset));
+    if (this->partitions.size() > disk) {
+        this->partitions[disk].push_back(new model::partition(name, mountpoint, filesystem, start, end, offset));
         return;
     }
-    while (this->partitions.size() < disk){
-        this->partitions.push_back(std::vector<model::partition>());
+    while (this->partitions.size() < disk) {
+        this->partitions.push_back(std::vector<model::partition*>());
     }
-    this->partitions[disk].push_back(model::partition(name, mountpoint, filesystem, start, end, offset));
+    this->partitions[disk].push_back(new model::partition(name, mountpoint, filesystem, start, end, offset));
 }
-// add a partition to the partition disk, if such a disk doesn't exisit create one
+// add a partition to the partition disk, if such a disk doesn't exist create one
 void yaml::addPartition(unsigned long  disk, QString name, QString mountpoint, QString filesystem, QString start, QString end){
-    if (this->partitions.size() > disk){
-        this->partitions[disk].push_back(model::partition(name, mountpoint, filesystem, start, end));
+    if (this->partitions.size() > disk) {
+        this->partitions[disk].push_back(new model::partition(name, mountpoint, filesystem, start, end));
         return;
     }
-    while (this->partitions.size() < disk){
-        this->partitions.push_back(std::vector<model::partition>());
+    while (this->partitions.size() < disk) {
+        this->partitions.push_back(std::vector<model::partition*>());
     }
-    this->partitions[disk].push_back(model::partition(name, mountpoint, filesystem, start, end));
+    this->partitions[disk].push_back(new model::partition(name, mountpoint, filesystem, start, end));
+}
+
+void yaml::addResizePartition(unsigned long  disk, QString name, QString mountpoint, QString filesystem, QString size, int offset){
+       if (this->partitions.size() > disk) {
+           this->partitions[disk].push_back(new model::resizePartition(name, mountpoint, filesystem, offset, size));
+           return;
+       }
+       while (this->partitions.size() < disk) {
+           this->partitions.push_back(std::vector<model::partition*>());
+       }
+       this->partitions[disk].push_back(new model::resizePartition(name, mountpoint, filesystem, offset, size));
+}
+void yaml::addResizePartition(unsigned long  disk, QString name, QString mountpoint, QString filesystem, QString size){
+    if (this->partitions.size() > disk) {
+        this->partitions[disk].push_back(new model::resizePartition(name, mountpoint, filesystem, size));
+        return;
+    }
+    while (this->partitions.size() < disk) {
+        this->partitions.push_back(std::vector<model::partition*>());
+    }
+    this->partitions[disk].push_back(new model::resizePartition(name, mountpoint, filesystem, size));
+}
+
+void yaml::addEncryptionPartition(unsigned long  disk, unsigned long logicvolumeID, QString password, QString name, QString mountpoint, QString start, QString end, int offset){
+    if (this->partitions.size() > disk){
+        this->partitions[disk].push_back(new model::encryptedPartitions(name, mountpoint, start, end, offset, password, this->volumes[logicvolumeID]));
+        return;
+    }
+    while(this->partitions.size() < disk){
+        this->partitions.push_back(std::vector<model::partition*>());
+    }
+    this->partitions[disk].push_back(new model::encryptedPartitions(name, mountpoint, start, end, offset, password, this->volumes[logicvolumeID]));
+
+}
+void yaml::addEncryptionPartition(unsigned long  disk, unsigned long logicvolumeID, QString password, QString name, QString mountpoint, QString start, QString end){
+    if (this->partitions.size() > disk){
+        this->partitions[disk].push_back(new model::encryptedPartitions(name, mountpoint, start, end, password, this->volumes[logicvolumeID]));
+        return;
+    }
+    while(this->partitions.size() < disk){
+        this->partitions.push_back(std::vector<model::partition*>());
+    }
+    this->partitions[disk].push_back(new model::encryptedPartitions(name, mountpoint, start, end, password, this->volumes[logicvolumeID]));
+}
+
+void yaml::addLogicVolume(unsigned long groupid, QString name, QString size, QString mountpoint) {
+    if (this->volumes.size() > groupid){
+       this->volumes[groupid].push_back(model::logicvolume(name, size, mountpoint));
+       return;
+    }
+    while (this->volumes.size() > groupid) {
+        this->volumes.push_back(std::vector<model::logicvolume>());
+    }
+    this->volumes[groupid].push_back(model::logicvolume(name, size, mountpoint));
 }
 
 
@@ -108,4 +164,9 @@ QString yaml::mountDisks(){
     }
     return data;
 }
+
+void yaml::execute(QString file){
+    QFile out(file);
+}
+
 
