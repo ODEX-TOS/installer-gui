@@ -158,11 +158,31 @@ Window {
             }
         }
 
-        Item {
+        User {
             id: userTab
+
+            function createUser(name, password){
+                   yaml.setUser(name, password);
+            }
+
+            function advance(){
+                bar.setCurrentIndex(++bar.currentIndex);
+                tab3.checkable = true;
+            }
         }
-        Item {
+        System {
             id: localsTab
+            function createSystem(local, keymap, hostname, password){
+                   yaml.setSystem(local, keymap, hostname, password);
+            }
+
+            function advance(){
+                bar.setCurrentIndex(++bar.currentIndex);
+                tab1.checkable = false;
+                tab2.checkable = false;
+                tab3.checkable = false;
+                tab4.checkable = true;
+            }
         }
 
         Installing {

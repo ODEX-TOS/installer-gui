@@ -66,6 +66,16 @@ Item {
         }
     }
 
+    Dialog {
+        id: dialog
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
+        title: "Please select a device"
+        standardButtons: Dialog.Ok
+
+        onAccepted: console.log("Ok clicked")
+    }
+
     Button {
         text: "Next"
         Material.background:  Material.accent
@@ -77,13 +87,18 @@ Item {
             if (nextClicked == 0){
                 diskselect.visible=true;
                 disktype.visible=false;
+                nextClicked++;
             }else if (nextClicked == 1){
-                diskselect.visible=false;
-                console.log(type, device);
-                advance();
+                if (device !== ""){
+                    diskselect.visible=false;
+                    console.log(type, device);
+                    advance();
+                    nextClicked++;
+                }else{
+                    dialog.visible=true;
+                }
             }
 
-            nextClicked++;
         }
     }
 }
