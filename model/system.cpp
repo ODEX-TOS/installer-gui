@@ -30,10 +30,10 @@ namespace model {
     }
 
     QString system::toYaml(){
-        return "\t- system:\n"
-               "\t\tlocal: \"" + this->local + "\"\n"
-               "\t\tkeymap: \"" + this->keymap + "\"\n"
-               "\t\tpassword: \"" + this->rootpwd + "\"\n"
-               "\t\thostname: \"" + this->hostname + "\"\n";
+        return "   - system:\n"
+               "      local: \"" + this->local + "\"\n"
+               "      keymap: \"" + this->keymap + "\"\n"
+               "      password: \"" + this->rootpwd + "\"\n"
+               "      hostname: \"" + this->hostname + "\"\n";
     }
 }

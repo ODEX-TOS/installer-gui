@@ -17,10 +17,10 @@ namespace model {
     }
 
     QString logicvolume::toYaml(){
-        return "\t\t\t\t\t\t- volume:\n"
-               "\t\t\t\t\t\t\tname: \"" + this->name + "\"\n"
-               "\t\t\t\t\t\t\tsize: \"" + this->size + "\"\n"
-               "\t\t\t\t\t\t\tmountpoint: \"" + this->getMountPoint() + "\"\n";
+        return "                  - volume:\n"
+               "                     name: \"" + this->name + "\"\n"
+               "                     size: \"" + this->size + "\"\n"
+               "                     mountpoint: \"" + this->getMountPoint() + "\"\n";
     }
 }
 

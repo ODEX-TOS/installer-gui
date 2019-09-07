@@ -35,12 +35,12 @@ namespace model {
         for (model::partition* item : this->partitions) {
             partitions += (*item).toYaml();
         }
-        return "\t\t- disk:\n"
-               "\t\t\tdevice: \"" + this->device + "\"\n"
-               "\t\t\tsize: \"" + this->size + "\"\n"
-               "\t\t\tgpt: " + boolToYaml(this->bIsGPT) + "\n"
-               "\t\t\ttable: " + boolToYaml(this->bIsNewPartitionTable) + "\n"
-               "\t\t\tpartitions:\n" +
+        return "      - disk:\n"
+               "         device: \"" + this->device + "\"\n"
+               "         size: \"" + this->size + "\"\n"
+               "         gpt: " + boolToYaml(this->bIsGPT) + "\n"
+               "         table: " + boolToYaml(this->bIsNewPartitionTable) + "\n"
+               "         partitions:\n" +
                 partitions + "\n";
 
 

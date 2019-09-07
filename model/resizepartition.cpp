@@ -13,18 +13,18 @@ namespace model {
 
     QString resizePartition::toYaml() {
         if (this->getOffset() == -1 ){
-            return "\t\t\t\t- partition:\n"
-                   "\t\t\t\t\tname: \"" + this->getName() + "\"\n"
-                   "\t\t\t\t\tmountpoint: \"" + this->getMountpoint() + "\"\n"
-                   "\t\t\t\t\tfilesystem: \"" + this->getFilesystem() + "\"\n"
-                   "\t\t\t\t\tsize: \"" + this->size + "\"\n";
+            return "            - partition:\n"
+                   "               name: \"" + this->getName() + "\"\n"
+                   "               mount: \"" + this->getMountpoint() + "\"\n"
+                   "               filesystem: \"" + this->getFilesystem() + "\"\n"
+                   "               size: \"" + this->size + "\"\n";
 
         }
-        return "\t\t\t\t- partition:\n"
-               "\t\t\t\t\tname: \"" + this->getName() + "\"\n"
-               "\t\t\t\t\tmountpoint: \"" + this->getMountpoint() + "\"\n"
-               "\t\t\t\t\tfilesystem: \"" + this->getFilesystem() + "\"\n"
-               "\t\t\t\t\tsize: \"" + this->size + "\"\n"
-               "\t\t\t\t\toffset: " + QString::number(this->getOffset()) + "\n";
+        return "            - partition:\n"
+               "               name: \"" + this->getName() + "\"\n"
+               "               mount: \"" + this->getMountpoint() + "\"\n"
+               "               filesystem: \"" + this->getFilesystem() + "\"\n"
+               "               size: \"" + this->size + "\"\n"
+               "               offset: " + QString::number(this->getOffset()) + "\n";
     }
 }

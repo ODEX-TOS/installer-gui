@@ -38,6 +38,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    config.h \
     model/disk.h \
     model/encryptedpartitions.h \
     model/logicvolume.h \

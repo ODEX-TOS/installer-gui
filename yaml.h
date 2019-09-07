@@ -49,7 +49,7 @@ public:
     QString getStandard();
 
     // generate the shell script
-    void execute(QString file="run.sh");
+    Q_INVOKABLE QString execute(QString file="run.sh");
 
 
 signals:

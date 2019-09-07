@@ -24,10 +24,10 @@ namespace model {
     }
 
     QString user::toYaml(){
-        return "\t- users:\n"
-               "\t\t user:\n"
-               "\t\t\tname: \"" + this->name + "\"\n"
-               "\t\t\tpassword: \"" + this->password + "\"\n";
+        return "   - users:\n"
+               "       - user:\n"
+               "            name: \"" + this->name + "\"\n"
+               "            password: \"" + this->password + "\"\n";
 
     }
 

@@ -1,6 +1,10 @@
 #include "yaml.h"
 #include <QFile>
 #include <QCoreApplication>
+#include <QProcess>
+#include <QDebug>
+
+#include "config.h"
 
 QString getResourcesPath()
 {
@@ -41,7 +45,7 @@ void yaml::setUser(QString name, QString password){
 
 void yaml::setData(){
     // we can assume the disks vector exists since you are installing on at least one disk
-    QString disk = "\t-disks:\n";
+    QString disk = "   - disks:\n";
     for (model::disk item : this->disk) {
         disk += item.toYaml();
     }
@@ -165,8 +169,12 @@ QString yaml::mountDisks(){
     return data;
 }
 
-void yaml::execute(QString file){
-    QFile out(file);
+QString yaml::execute(QString file){
+    QProcess process;
+    process.setWorkingDirectory(WORKINGDIR);
+    process.start("/bin/bash", QStringList() << "-c" << "echo -e '" + this->getConfig() + "' | os-install --out " + file);
+    process.waitForFinished();
+    return process.readAllStandardError();
 }
 
 

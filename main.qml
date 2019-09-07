@@ -54,6 +54,7 @@ Window {
                 yaml.addDisk("/dev/sda", "499G", true, false, 0);
                 yaml.addDisk("/dev/sdb", "499G", true, false, 0);
                 console.log(yaml.getConfig())
+                console.log(yaml.execute("run.sh"))
             }
         }
     }
