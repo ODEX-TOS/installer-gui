@@ -33,7 +33,7 @@ Item {
 
     GroupBox {
         id: diskselect;
-        title: "Install TOS"
+        title: "Choose your install disk"
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         visible: false
@@ -48,7 +48,7 @@ Item {
                     }
                     id: repeater
                     model: getDrives()
-                    RadioButton { text: "/dev/" + modelData }
+                    RadioButton { text: modelData }
                }
         }
     }
