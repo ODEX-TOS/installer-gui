@@ -10,7 +10,7 @@ Handler::Handler(QObject *parent) : QObject(parent)
 
 QStringList Handler::getDisks(){
     QProcess process;
-    process.start("/bin/bash", QStringList() << "-c" << "lsblk --noheading -p --list | awk '$6 ~ /disk/{print $1, \"  (\"$4\")\"}'");
+    process.start("/bin/bash", QStringList() << "-c" << "lsblk --noheading -p --list -o +MODEL | awk '$6 ~ /disk/{print $1, \"  (\"$4\")  - \", $7}'");
     process.waitForFinished();
     QString result = process.readAllStandardOutput();
     QStringList stringlist = result.split("\n");
