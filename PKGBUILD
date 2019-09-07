@@ -1,6 +1,6 @@
 # Maintainer: Tom Meyers tom@odex.be
 pkgname=installer-gui
-pkgver=r19.163f298
+pkgver=r20.5567f86
 pkgrel=1
 pkgdesc="GUI for installing TOS"
 arch=(any)

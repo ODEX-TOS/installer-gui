@@ -114,13 +114,13 @@ Window {
         id: theme
         text: qsTr("Toggle")
         anchors.bottom: bar.bottom
+        Material.background:  Material.accent
         anchors.bottomMargin: 5
         anchors.left: bar.right
         anchors.leftMargin: 5
         font.pointSize: 9
         font.family: "Times New Roman"
         anchors.rightMargin: 5
-        checkable: true
         anchors.top: parent.top
         anchors.topMargin: 5
         anchors.right: parent.right
