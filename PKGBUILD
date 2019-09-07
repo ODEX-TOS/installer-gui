@@ -1,6 +1,6 @@
 # Maintainer: Tom Meyers tom@odex.be
 pkgname=installer-gui
-pkgver=r9.3c80a94
+pkgver=r19.163f298
 pkgrel=1
 pkgdesc="GUI for installing TOS"
 arch=(any)
@@ -28,5 +28,8 @@ build() {
 package() {
         install -Dm755 installer "$pkgdir"/usr/bin/tos-gui-installer
         cd "$srcdir/$_reponame"
-        install -Dm755 -d config "$pkgdir"/usr/share/tos-gui-installer/
+        mkdir -p "$pkgdir"/usr/share/tos-gui-installer
+        for file in config/* ; do
+            install -Dm755 "$file" "$pkgdir"/usr/share/tos-gui-installer/"$file"
+        done
 }
