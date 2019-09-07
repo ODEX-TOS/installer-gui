@@ -116,6 +116,46 @@ Window {
 
         Disk {
             id: disklayoutTab
+
+            function createLogicVolume(groupid, name, size, mountpoint){
+                yaml.addLogicVolume(groupid, name, size, mountpoint);
+            }
+
+            function createEncryptedPartition(diskid, volumeid, password, name, mountpoint, start, end, offset=-1){
+                if (offset === -1 ){
+                    yaml.addEncryptionPartition(diskid, volumeid, password, name, mountpoint, start, end)
+                    return;
+                }
+                yaml.addEncryptionPartition(diskid, volumeid, password, name, mountpoint, start, end, offset)
+            }
+
+
+            function createResizePartition(diskid, name, mountpoint, filesystem, size, offset=-1){
+                if (offset === -1){
+                    yaml.addResizePartition(diskid, name, mountpoint, filesystem, size);
+                    return;
+                }
+                yaml.addResizePartition(diskid, name, mountpoint, filesystem, size, offset);
+            }
+
+            // create a basic partition (set offset to -1 indicates no offset)
+            function createPartition(diskid, name, mountpount, filesystem, start, end, offset=-1){
+                if(offset !== -1) {
+                    yaml.addPartition(diskid, name, mountpount, filesystem, start, end, offset);
+                    return;
+                }
+                yaml.addPartition(diskid, name, mountpount, filesystem, start, end);
+            }
+            // create a disk and supply an id of the partition array
+            function createDisk(device, size, bIsGPT, bIsNewPartitionTable, diskId){
+                yaml.addDisk(device, size, bIsGPT, bIsNewPartitionTable, diskId);
+            }
+
+            function advance(){
+                bar.setCurrentIndex(++bar.currentIndex);
+                tab1.checkable = true;
+                tab2.checkable = true;
+            }
         }
 
         Item {
