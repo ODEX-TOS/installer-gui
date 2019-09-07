@@ -8,6 +8,7 @@ import QtQuick.Controls.Material 2.12
 import tos 1.0
 
 Window {
+    id: window
     visible: true
     width: 1080
     height: 720
@@ -23,7 +24,7 @@ Window {
 
     TabBar {
         id: bar
-        width: parent.width
+        width: parent.width-100
         TabButton {
             id: tab1
             text: qsTr("Disk select")
@@ -105,6 +106,29 @@ Window {
                         console.log(yaml.getConfig())
                         //console.log(yaml.execute("run.sh"))
                 }
+            }
+        }
+    }
+
+    Button {
+        id: theme
+        text: qsTr("Toggle")
+        anchors.bottom: bar.bottom
+        anchors.bottomMargin: 5
+        anchors.left: bar.right
+        anchors.leftMargin: 5
+        font.pointSize: 9
+        font.family: "Times New Roman"
+        anchors.rightMargin: 5
+        checkable: true
+        anchors.top: parent.top
+        anchors.topMargin: 5
+        anchors.right: parent.right
+        onClicked: {
+            if (window.Material.theme === Material.Light){
+                window.Material.theme = Material.Dark
+            }else{
+                window.Material.theme = Material.Light
             }
         }
     }
@@ -200,3 +224,10 @@ Window {
     }
 
 }
+
+
+
+/*##^## Designer {
+    D{i:8;anchors_width:50}
+}
+ ##^##*/
