@@ -24,7 +24,7 @@ SOURCES += \
         model/user.cpp \
         yaml.cpp
 
-RESOURCES += qml.qrc TOS_logo.svg
+RESOURCES += qml.qrc TOS_logo.svg pictures/slide1.png pictures/slide2.png pictures/slide3.png
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -57,4 +57,7 @@ DISTFILES += \
     config/userinstall.sh \
     config/wayland.txt \
     config/yay.txt \
-    config/yayinstall.sh
+    config/yayinstall.sh \
+    pictures/slide1.png \
+    pictures/slide2.png \
+    pictures/slide3.png

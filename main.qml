@@ -9,10 +9,10 @@ import tos 1.0
 
 Window {
     visible: true
-    width: 640
-    height: 480
+    width: 1080
+    height: 720
     title: qsTr("Hello World")
-    Material.theme: Material.Light
+    Material.theme: Material.Dark
     Material.accent: Material.Purple
     color: Material.backgroundColor
 
@@ -23,7 +23,6 @@ Window {
     TabBar {
         id: bar
         width: parent.width
-        height: parent.height
         TabButton {
             text: qsTr("Disk select")
         }
@@ -54,13 +53,14 @@ Window {
                 yaml.addDisk("/dev/sda", "499G", true, false, 0);
                 yaml.addDisk("/dev/sdb", "499G", true, false, 0);
                 console.log(yaml.getConfig())
-                console.log(yaml.execute("run.sh"))
+                //console.log(yaml.execute("run.sh"))
             }
         }
     }
 
     StackLayout {
         width: parent.width
+        height: parent.height
         currentIndex: bar.currentIndex
         Item {
             id: selectTab
@@ -71,9 +71,13 @@ Window {
         Item {
             id: localsTab
         }
-        Item {
-            id: installingTab
+        Installing {
+            id: installTab
+            function test(param){
+                console.log("testing " + param);
+            }
         }
+
         Final {
             id: finishedTab
         }
