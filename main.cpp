@@ -2,9 +2,11 @@
 #include <QQmlApplicationEngine>
 #include <QQuickStyle>
 #include "yaml.h"
+#include "handler.h"
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    qmlRegisterType<Handler>("tos", 1, 0, "Handler");
     qmlRegisterType<yaml>("tos", 1, 0, "Yaml");
     QGuiApplication app(argc, argv);
     QQuickStyle::setStyle("Material");

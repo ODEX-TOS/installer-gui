@@ -3,5 +3,8 @@
         <file>main.qml</file>
         <file>Final.qml</file>
         <file>Installing.qml</file>
+        <file>Disk.qml</file>
+        <file>DiskType.qml</file>
+        <file>DiskSelect.qml</file>
     </qresource>
 </RCC>

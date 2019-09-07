@@ -27,7 +27,7 @@ Window {
         TabButton {
             id: tab1
             text: qsTr("Disk select")
-            checkable: True
+            checkable: true
             onClicked: {
                 if (tab1.checkable == true){
                     tab1.checkable = false;
@@ -113,15 +113,18 @@ Window {
         width: parent.width
         height: parent.height
         currentIndex: bar.currentIndex
-        Item {
-            id: selectTab
+
+        Disk {
+            id: disklayoutTab
         }
+
         Item {
             id: userTab
         }
         Item {
             id: localsTab
         }
+
         Installing {
             id: installTab
             function test(param){
