@@ -12,6 +12,7 @@ source=(
 "git+https://github.com/ODEX-TOS/installer-gui.git"
 "https://github.com/ODEX-TOS/installer-gui/releases/download/v0.0.1/installer")
 md5sums=('SKIP' 'SKIP')
+depends=('installer-backend')
 makedepends=('git')
 
 pkgver() {
