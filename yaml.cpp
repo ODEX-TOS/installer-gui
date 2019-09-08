@@ -55,7 +55,7 @@ void yaml::setData(){
 
 QString yaml::getStandard(){
     // TODO: Move these files to a global state eg /usr/share, to be defined
-    QFile file("/home/zeus/tos/installer-gui/config/standard.yaml");
+    QFile file(CONFIGDIR + "standard.yaml");
     // if the file is not openend then this string is isn't changed
     QString data = "Error";
     if(file.open(QIODevice::ReadOnly)) {
@@ -174,6 +174,7 @@ QString yaml::execute(QString file){
     QProcess process;
     QString dir = QDir::currentPath()+ "/";
     qDebug() << "Run install dir: " << dir;
+    qDebug() << "Command:\n" << "echo -e '" + this->getConfig() + "' | os-install --out " + dir + file;
     process.setWorkingDirectory(WORKINGDIR);
     process.start("/bin/bash", QStringList() << "-c" << "echo -e '" + this->getConfig() + "' | os-install --out " + dir + file);
     process.waitForFinished();
