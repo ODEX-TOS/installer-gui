@@ -3,7 +3,7 @@
 #include <QString>
 
 // TODO: set this location to the config install location
-const QString CONFIGDIR="/home/zeus/tos/installer-gui/config";
+const QString CONFIGDIR="/usr/share/tos-gui-installer/config";
 const QString WORKINGDIR=CONFIGDIR;
 
 
