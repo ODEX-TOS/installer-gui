@@ -186,7 +186,21 @@ QString yaml::diskSize(QString device){
     QProcess process;
     process.start("/bin/bash", QStringList() << "-c" << "lsblk --noheading -p --list -o +MODEL | awk '$6 ~ /disk/{print $1, $4}' | grep '" + device + "' | awk '{print $2}'");
     process.waitForFinished();
-    return process.readAllStandardError();
+    return process.readAllStandardOutput();
+}
+
+int yaml::diskSizeInGB(QString device){
+    QString disk = this->diskSize(device);
+    qDebug() << "Disk size found on disk" << device << ": " << disk;
+    if(disk.contains("G")){
+        disk.replace("G", "");
+        return disk.toInt();
+    }
+    if(disk.contains("T")){
+        disk.replace("T", "");
+        return disk.toInt()*1000;
+    }
+    return disk.toInt();
 }
 
 

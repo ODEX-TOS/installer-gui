@@ -44,6 +44,7 @@ public:
     Q_INVOKABLE void addLogicVolume(unsigned long groupid, QString name, QString size, QString mountpoint);
 
     Q_INVOKABLE QString diskSize(QString device);
+    Q_INVOKABLE int diskSizeInGB(QString device);
 
     // set the data variable to contain the entire yaml file (without the tos specific stuff) aka the model
     void setData();
