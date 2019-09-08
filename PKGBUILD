@@ -12,7 +12,7 @@ source=(
 "git+https://github.com/ODEX-TOS/installer-gui.git"
 "https://github.com/ODEX-TOS/installer-gui/releases/download/v0.2.0/installer")
 md5sums=('SKIP' 'SKIP')
-depends=('installer-backend')
+depends=('installer-backend' 'qt5-base' 'qt5-declarative' 'qt5-quickcontrols' 'qt5-quickcontrols2' 'qt5-graphicaleffects')
 makedepends=('git')
 
 pkgver() {
