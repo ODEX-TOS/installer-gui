@@ -10,7 +10,7 @@ license=('GPL')
 
 source=(
 "git+https://github.com/ODEX-TOS/installer-gui.git"
-"https://github.com/ODEX-TOS/installer-gui/releases/download/v0.0.1/installer")
+"https://github.com/ODEX-TOS/installer-gui/releases/download/v0.2.0/installer")
 md5sums=('SKIP' 'SKIP')
 depends=('installer-backend')
 makedepends=('git')
