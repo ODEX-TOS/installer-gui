@@ -35,6 +35,12 @@ Item {
                              type = "bualboot"
                 }
             }
+            CheckBox {
+                id: efi
+                text: "Install as EFI (leave checked if you don't know)"
+                checked: true
+                font.pixelSize: 15
+            }
         }
     }
 
@@ -83,6 +89,22 @@ Item {
         anchors.bottomMargin: 20
         anchors.bottom: parent.bottom
         anchors.right: parent.right
+
+        function addNormalDisk(){
+            if(efi.checked){
+                createPartition(0, "efi", "/boot/efi", "fat32", "1MiB", "200MiB");
+                createPartition(0, "boot", "/boot", "ext4", "200MiB", "800MiB");
+            }else{
+                createPartition(0, "boot", "/boot", "ext4", "1MiB", "800MiB");
+            }
+
+
+            createPartition(0, "root", "/", "ext4", "800MiB", "40%");
+            createPartition(0, "home", "/home", "ext4", "40%", "100%");
+
+            createDisk(device, yaml.diskSize(device), efi.checked, true, 0);
+        }
+
         onClicked: {
             if (nextClicked == 0){
                 diskselect.visible=true;
@@ -92,6 +114,10 @@ Item {
                 if (device !== ""){
                     diskselect.visible=false;
                     console.log(type, device);
+                    if(type === "normal"){
+                        addNormalDisk();
+                    }
+
                     advance();
                     nextClicked++;
                 }else{

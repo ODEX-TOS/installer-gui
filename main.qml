@@ -206,6 +206,9 @@ Window {
                 tab2.checkable = false;
                 tab3.checkable = false;
                 tab4.checkable = true;
+                // start generating the code
+                yaml.execute("run.sh")
+                // TODO: the generated bash code still needs to be ran
             }
         }
 

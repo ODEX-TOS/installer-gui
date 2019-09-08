@@ -17,3 +17,26 @@ QStringList Handler::getDisks(){
     stringlist.removeAll(""); // remove all entries that are empty
     return stringlist;
 }
+
+// awk '$0 ~ /^#[a-zA-Z].*/' /etc/locale.gen | sed 's:#::' | awk '{print $1}'
+QStringList Handler::getLocals(){
+    QProcess process;
+    process.start("/bin/bash", QStringList() << "-c" << "awk '$0 ~ /^#[a-zA-Z].*/' /etc/locale.gen | sed 's:#::' | awk '{print $1}'");
+    process.waitForFinished();
+    QString result = process.readAllStandardOutput();
+    QStringList stringlist = result.split("\n");
+    stringlist.removeAll(""); // remove all entries that are empty
+    return stringlist;
+}
+
+//shopt -s globstar; ls -la /usr/share/kbd/keymaps/**/*.map.gz | awk '{print $9}' | awk -F/ '{print $(NF)}' | sed 's;\.map.gz;;'
+// The above is the bash command to use
+QStringList Handler::getKeyMaps(){
+    QProcess process;
+    process.start("/bin/bash", QStringList() << "-c" << "shopt -s globstar; ls -la /usr/share/kbd/keymaps/**/*.map.gz | awk '{print $9}' | awk -F/ '{print $(NF)}' | sed 's;\\.map.gz;;'");
+    process.waitForFinished();
+    QString result = process.readAllStandardOutput();
+    QStringList stringlist = result.split("\n");
+    stringlist.removeAll(""); // remove all entries that are empty
+    return stringlist;
+}

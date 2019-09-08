@@ -3,6 +3,7 @@
 #include <QCoreApplication>
 #include <QProcess>
 #include <QDebug>
+#include <QDir>
 
 #include "config.h"
 
@@ -171,8 +172,19 @@ QString yaml::mountDisks(){
 
 QString yaml::execute(QString file){
     QProcess process;
+    QString dir = QDir::currentPath()+ "/";
+    qDebug() << "Run install dir: " << dir;
     process.setWorkingDirectory(WORKINGDIR);
-    process.start("/bin/bash", QStringList() << "-c" << "echo -e '" + this->getConfig() + "' | os-install --out " + file);
+    process.start("/bin/bash", QStringList() << "-c" << "echo -e '" + this->getConfig() + "' | os-install --out " + dir + file);
+    process.waitForFinished();
+    return process.readAllStandardError();
+}
+
+
+// lsblk --noheading -p --list -o +MODEL | awk '$6 ~ /disk/{print $1, $4}' | grep '/dev/sda' | awk '{print $2}'
+QString yaml::diskSize(QString device){
+    QProcess process;
+    process.start("/bin/bash", QStringList() << "-c" << "lsblk --noheading -p --list -o +MODEL | awk '$6 ~ /disk/{print $1, $4}' | grep '" + device + "' | awk '{print $2}'");
     process.waitForFinished();
     return process.readAllStandardError();
 }

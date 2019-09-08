@@ -12,6 +12,8 @@ class Handler : public QObject
 public:
     explicit Handler(QObject *parent = nullptr);
     Q_INVOKABLE QStringList getDisks();
+    Q_INVOKABLE QStringList getLocals();
+    Q_INVOKABLE QStringList getKeyMaps();
 signals:
 
 public slots:

@@ -43,10 +43,6 @@ Item {
         }
     }
 
-    Component.onCompleted: {
-        console.log("started")
-    }
-
     Timer {
         id: timer
         interval: 10000; running: true; repeat: true
