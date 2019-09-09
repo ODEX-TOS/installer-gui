@@ -4,8 +4,6 @@
         <file>Final.qml</file>
         <file>Installing.qml</file>
         <file>Disk.qml</file>
-        <file>DiskType.qml</file>
-        <file>DiskSelect.qml</file>
         <file>User.qml</file>
         <file>System.qml</file>
     </qresource>
