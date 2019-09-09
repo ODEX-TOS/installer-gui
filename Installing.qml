@@ -19,9 +19,17 @@ Item {
     }
 
     function next() {
-            let images = ["pictures/slide1.png", "pictures/slide2.png", "pictures/slide3.png"];
+        let images = ["pictures/TOS-installer/TOS-installer-1.jpg", "pictures/random1.jpg",
+                      "pictures/TOS-installer/TOS-installer-2.jpg", "pictures/random2.jpg",
+                      "pictures/TOS-installer/TOS-installer-3.jpg", "pictures/random3.jpg",
+                      "pictures/TOS-installer/TOS-installer-4.jpg", "pictures/random4.jpg",
+                      "pictures/TOS-installer/TOS-installer-5.jpg", "pictures/random5.jpg",
+                      "pictures/TOS-installer/TOS-installer-6.jpg", "pictures/ThankYou.jpg",
+                      "pictures/TOS-installer/TOS-installer-7.jpg", "pictures/random1.jpg",
+                      "pictures/TOS-installer/TOS-installer-8.jpg", "pictures/random2.jpg",
+                      "pictures/TOS-installer/TOS-installer-9.jpg", "pictures/ThankYou.jpg"];
             // TODO: qt doesn't support array.lenght yet, implement if exists
-            if(id==3)
+            if(id==9)
                 id=0;
             if (view.state == "off"){
                 view.state="on";
@@ -34,7 +42,15 @@ Item {
     }
 
     function stateoff(){
-        let images = ["pictures/slide1.png", "pictures/slide2.png", "pictures/slide3.png"];
+        let images = ["pictures/TOS-installer/TOS-installer-1.jpg", "pictures/random1.jpg",
+                      "pictures/TOS-installer/TOS-installer-2.jpg", "pictures/random2.jpg",
+                      "pictures/TOS-installer/TOS-installer-3.jpg", "pictures/random3.jpg",
+                      "pictures/TOS-installer/TOS-installer-4.jpg", "pictures/random4.jpg",
+                      "pictures/TOS-installer/TOS-installer-5.jpg", "pictures/random5.jpg",
+                      "pictures/TOS-installer/TOS-installer-6.jpg", "pictures/ThankYou.jpg",
+                      "pictures/TOS-installer/TOS-installer-7.jpg", "pictures/random1.jpg",
+                      "pictures/TOS-installer/TOS-installer-8.jpg", "pictures/random2.jpg",
+                      "pictures/TOS-installer/TOS-installer-9.jpg", "pictures/ThankYou.jpg"];
         ++state;
         if(state == timer.interval/smooth.interval){
             state=0;
@@ -59,8 +75,10 @@ Item {
         id: old
         anchors.topMargin: 50
         anchors.bottomMargin: 30
+        anchors.leftMargin: 30
+        anchors.rightMargin: 30
         anchors.fill: parent
-        fillMode: Image.PreserveAspectFit
+        //fillMode: Image.PreserveAspectFit
         source: "pictures/slide2.png"
         opacity: 1
         visible: true
@@ -71,8 +89,10 @@ Item {
         id: view
         anchors.topMargin: 50
         anchors.bottomMargin: 30
+        anchors.leftMargin: 30
+        anchors.rightMargin: 30
         anchors.fill: parent
-        fillMode: Image.PreserveAspectFit
+        //fillMode: Image.PreserveAspectFit
         source: "pictures/slide1.png"
         visible: true
         smooth: true

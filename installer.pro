@@ -25,7 +25,8 @@ SOURCES += \
         model/user.cpp \
         yaml.cpp
 
-RESOURCES += qml.qrc TOS_logo.svg pictures/slide1.png pictures/slide2.png pictures/slide3.png
+RESOURCES += qml.qrc TOS_logo.svg pictures/TOS-installer/TOS-installer-1.jpg pictures/TOS-installer/TOS-installer-2.jpg pictures/TOS-installer/TOS-installer-3.jpg pictures/TOS-installer/TOS-installer-4.jpg pictures/TOS-installer/TOS-installer-5.jpg pictures/TOS-installer/TOS-installer-6.jpg pictures/TOS-installer/TOS-installer-7.jpg pictures/TOS-installer/TOS-installer-8.jpg pictures/TOS-installer/TOS-installer-9.jpg\
+            pictures/random1.jpg pictures/random2.jpg pictures/random3.jpg pictures/random4.jpg pictures/random5.jpg pictures/ThankYou.jpg
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -60,6 +61,4 @@ DISTFILES += \
     config/wayland.txt \
     config/yay.txt \
     config/yayinstall.sh \
-    pictures/slide1.png \
-    pictures/slide2.png \
-    pictures/slide3.png
+    pictures/slide2.png
