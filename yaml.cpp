@@ -62,11 +62,12 @@ QString yaml::getStandard(){
         data = file.readAll();
         // If multiple disks are used then the partitiontable, format and mount entries must be duplicated
         data.replace(" - partitiontable: \"#disk#\"", this->partitionDisks());
-        data.replace(" - format: \"#disk#\"", this->mountDisks());
-        data.replace(" - mount: \"#disk#\"", this->formatDisks());
+        data.replace(" - format: \"#disk#\"", this->formatDisks());
+        data.replace(" - mount: \"#disk#\"", this->mountDisks());
         data.replace("#disk#", this->disk[0].getDevice());
         data.replace("#user#", this->user.getName());
     }
+    qDebug() << data;
     return data;
 }
 

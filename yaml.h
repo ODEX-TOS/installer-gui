@@ -12,7 +12,9 @@
 #include "model/resizepartition.h"
 #include "model/encryptedpartitions.h"
 
-
+// The yaml class takes care of building objects to finally generate a yaml file
+// That yaml file can then be executed on the installer-backend
+// Finally the generated shell script (from the backend) can then be executed on the system
 class yaml : public QObject
 {
     Q_OBJECT

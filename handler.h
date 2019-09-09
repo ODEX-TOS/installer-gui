@@ -6,6 +6,9 @@
 #include <vector>
 #include <QList>
 
+
+// The handler class takes care of custom data that needs to be displayed in a gui.
+// It always returns QString lists that can then Dynamically be shown using models in a view.
 class Handler : public QObject
 {
     Q_OBJECT

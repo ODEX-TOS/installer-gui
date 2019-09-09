@@ -7,7 +7,6 @@ Handler::Handler(QObject *parent) : QObject(parent)
 
 }
 //lsblk --noheading -p --list | awk '$6 ~ /disk/{print $1, $4}'
-
 QStringList Handler::getDisks(){
     QProcess process;
     process.start("/bin/bash", QStringList() << "-c" << "lsblk --noheading -p --list -o +MODEL | awk '$6 ~ /disk/{print $1, \"  (\"$4\")  - \", $7}'");
@@ -18,10 +17,10 @@ QStringList Handler::getDisks(){
     return stringlist;
 }
 
-// awk '$0 ~ /^#[a-zA-Z].*\.UTF-8/' /etc/locale.gen | sed 's:#::' | awk '{print $1}'
+// awk '$0 ~ /^(#){0,1}[a-zA-Z_]*.UTF-8/' /etc/locale.gen | sed 's:#::' | awk '{print $1}'
 QStringList Handler::getLocals(){
     QProcess process;
-    process.start("/bin/bash", QStringList() << "-c" << "awk '$0 ~ /^#[a-zA-Z].*\\.UTF-8/' /etc/locale.gen | sed 's:#::' | awk '{print $1}'");
+    process.start("/bin/bash", QStringList() << "-c" << "awk '$0 ~ /^(#){0,1}[a-zA-Z_]*.UTF-8/' /etc/locale.gen | sed 's:#::' | awk '{print $1}'");
     process.waitForFinished();
     QString result = process.readAllStandardOutput();
     QStringList stringlist = result.split("\n");
