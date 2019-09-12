@@ -19,17 +19,17 @@ Item {
     }
 
     function next() {
-        let images = ["pictures/TOS-installer/TOS-installer-1.jpg", "pictures/random1.jpg",
-                      "pictures/TOS-installer/TOS-installer-2.jpg", "pictures/random2.jpg",
+        let images = ["pictures/TOS-installer/TOS-installer-1.jpg", "pictures/random2.jpg",
+                      "pictures/TOS-installer/TOS-installer-2.jpg", "pictures/random6.jpg",
                       "pictures/TOS-installer/TOS-installer-3.jpg", "pictures/random3.jpg",
                       "pictures/TOS-installer/TOS-installer-4.jpg", "pictures/random4.jpg",
                       "pictures/TOS-installer/TOS-installer-5.jpg", "pictures/random5.jpg",
                       "pictures/TOS-installer/TOS-installer-6.jpg", "pictures/ThankYou.jpg",
-                      "pictures/TOS-installer/TOS-installer-7.jpg", "pictures/random1.jpg",
-                      "pictures/TOS-installer/TOS-installer-8.jpg", "pictures/random2.jpg",
-                      "pictures/TOS-installer/TOS-installer-9.jpg", "pictures/ThankYou.jpg"];
+                      "pictures/TOS-installer/TOS-installer-7.jpg", "pictures/random6.jpg",
+                      "pictures/TOS-installer/TOS-installer-8.jpg", "pictures/ThankYou.jpg",
+                      "pictures/TOS-installer/TOS-installer-9.jpg", "pictures/random1.jpg"];
             // TODO: qt doesn't support array.lenght yet, implement if exists
-            if(id==9)
+            if(id==18)
                 id=0;
             if (view.state == "off"){
                 view.state="on";
@@ -42,15 +42,15 @@ Item {
     }
 
     function stateoff(){
-        let images = ["pictures/TOS-installer/TOS-installer-1.jpg", "pictures/random1.jpg",
-                      "pictures/TOS-installer/TOS-installer-2.jpg", "pictures/random2.jpg",
+        let images = ["pictures/TOS-installer/TOS-installer-1.jpg", "pictures/random2.jpg",
+                      "pictures/TOS-installer/TOS-installer-2.jpg", "pictures/random6.jpg",
                       "pictures/TOS-installer/TOS-installer-3.jpg", "pictures/random3.jpg",
                       "pictures/TOS-installer/TOS-installer-4.jpg", "pictures/random4.jpg",
                       "pictures/TOS-installer/TOS-installer-5.jpg", "pictures/random5.jpg",
                       "pictures/TOS-installer/TOS-installer-6.jpg", "pictures/ThankYou.jpg",
-                      "pictures/TOS-installer/TOS-installer-7.jpg", "pictures/random1.jpg",
-                      "pictures/TOS-installer/TOS-installer-8.jpg", "pictures/random2.jpg",
-                      "pictures/TOS-installer/TOS-installer-9.jpg", "pictures/ThankYou.jpg"];
+                      "pictures/TOS-installer/TOS-installer-7.jpg", "pictures/random6.jpg",
+                      "pictures/TOS-installer/TOS-installer-8.jpg", "pictures/ThankYou.jpg",
+                      "pictures/TOS-installer/TOS-installer-9.jpg", "pictures/random1.jpg"];
         ++state;
         if(state == timer.interval/smooth.interval){
             state=0;
