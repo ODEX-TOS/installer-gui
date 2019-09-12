@@ -17,6 +17,7 @@ public:
     Q_INVOKABLE QStringList getDisks();
     Q_INVOKABLE QStringList getLocals();
     Q_INVOKABLE QStringList getKeyMaps();
+    Q_INVOKABLE bool isEFI();
 signals:
 
 public slots:

@@ -39,3 +39,12 @@ QStringList Handler::getKeyMaps(){
     stringlist.removeAll(""); // remove all entries that are empty
     return stringlist;
 }
+
+
+// check if the live environment is efi enabled
+bool Handler::isEFI(){
+    QProcess process;
+    process.start("/bin/bash", QStringList() << "-c" << "if [[ -d '/sys/firmware/efi' ]]; then printf 'efi'; else printf 'mbr'; fi");
+    process.waitForFinished();
+    return process.readAllStandardOutput() == "efi";
+}

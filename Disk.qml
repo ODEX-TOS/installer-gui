@@ -37,8 +37,8 @@ Item {
             }
             CheckBox {
                 id: efi
-                text: "Install as EFI (leave checked if you don't know)"
-                checked: true
+                text: "Install as EFI (leave at default if you don't know)"
+                checked: handle.isEFI()
                 font.pixelSize: 15
             }
         }
