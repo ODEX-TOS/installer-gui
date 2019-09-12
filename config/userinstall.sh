@@ -25,8 +25,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.v
 ln .config/.Xresources $HOME/.Xresources
 mkdir -p $HOME/.icons/default
 ln .config/index.theme $HOME/.icons/default/index.theme
-cd $HOME/.oh-my-zsh
-git clone https://github.com/ODEX-TOS/zsh-load load
+git clone https://github.com/ODEX-TOS/zsh-load $HOME/.oh-my-zsh/load
 cd
 rmdir Pictures
 git clone https://github.com/ODEX-TOS/Pictures Pictures
