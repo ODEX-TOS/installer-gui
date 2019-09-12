@@ -9,6 +9,15 @@ Item {
     property int id: 1
     property int prev_id: 0
     property int state: 1
+    property var images: ["pictures/TOS-installer/TOS-installer-1.jpg", "pictures/random2.jpg",
+    "pictures/TOS-installer/TOS-installer-2.jpg", "pictures/random6.jpg",
+    "pictures/TOS-installer/TOS-installer-3.jpg", "pictures/random3.jpg",
+    "pictures/TOS-installer/TOS-installer-4.jpg", "pictures/random4.jpg",
+    "pictures/TOS-installer/TOS-installer-5.jpg", "pictures/random5.jpg",
+    "pictures/TOS-installer/TOS-installer-6.jpg", "pictures/ThankYou.jpg",
+    "pictures/TOS-installer/TOS-installer-7.jpg", "pictures/random6.jpg",
+    "pictures/TOS-installer/TOS-installer-8.jpg", "pictures/ThankYou.jpg",
+    "pictures/TOS-installer/TOS-installer-9.jpg", "pictures/random1.jpg"];
 
     function setImage(image) {
         view.source = image;
@@ -19,43 +28,24 @@ Item {
     }
 
     function next() {
-        let images = ["pictures/TOS-installer/TOS-installer-1.jpg", "pictures/random2.jpg",
-                      "pictures/TOS-installer/TOS-installer-2.jpg", "pictures/random6.jpg",
-                      "pictures/TOS-installer/TOS-installer-3.jpg", "pictures/random3.jpg",
-                      "pictures/TOS-installer/TOS-installer-4.jpg", "pictures/random4.jpg",
-                      "pictures/TOS-installer/TOS-installer-5.jpg", "pictures/random5.jpg",
-                      "pictures/TOS-installer/TOS-installer-6.jpg", "pictures/ThankYou.jpg",
-                      "pictures/TOS-installer/TOS-installer-7.jpg", "pictures/random6.jpg",
-                      "pictures/TOS-installer/TOS-installer-8.jpg", "pictures/ThankYou.jpg",
-                      "pictures/TOS-installer/TOS-installer-9.jpg", "pictures/random1.jpg"];
             // TODO: qt doesn't support array.lenght yet, implement if exists
             if(id==18)
                 id=0;
             if (view.state == "off"){
                 view.state="on";
             }
-            setImage(images[id]);
+            setImage(installTab.images[id]);
             prev_id = id;
             id++;
             console.log("Next picture");
             test("Parameter");
     }
-
     function stateoff(){
-        let images = ["pictures/TOS-installer/TOS-installer-1.jpg", "pictures/random2.jpg",
-                      "pictures/TOS-installer/TOS-installer-2.jpg", "pictures/random6.jpg",
-                      "pictures/TOS-installer/TOS-installer-3.jpg", "pictures/random3.jpg",
-                      "pictures/TOS-installer/TOS-installer-4.jpg", "pictures/random4.jpg",
-                      "pictures/TOS-installer/TOS-installer-5.jpg", "pictures/random5.jpg",
-                      "pictures/TOS-installer/TOS-installer-6.jpg", "pictures/ThankYou.jpg",
-                      "pictures/TOS-installer/TOS-installer-7.jpg", "pictures/random6.jpg",
-                      "pictures/TOS-installer/TOS-installer-8.jpg", "pictures/ThankYou.jpg",
-                      "pictures/TOS-installer/TOS-installer-9.jpg", "pictures/random1.jpg"];
         ++state;
         if(state == timer.interval/smooth.interval){
             state=0;
             view.state="off"
-            setImageOld(images[prev_id]);
+            setImageOld(installTab.images[prev_id]);
         }
     }
 
@@ -79,7 +69,7 @@ Item {
         anchors.rightMargin: 30
         anchors.fill: parent
         //fillMode: Image.PreserveAspectFit
-        source: "pictures/slide2.png"
+        source: "pictures/TOS-installer/TOS-installer-1.jpg"
         opacity: 1
         visible: true
     }
@@ -93,7 +83,7 @@ Item {
         anchors.rightMargin: 30
         anchors.fill: parent
         //fillMode: Image.PreserveAspectFit
-        source: "pictures/slide1.png"
+        source: "pictures/TOS-installer/TOS-installer-1.jpg"
         visible: true
         smooth: true
         opacity: 1
