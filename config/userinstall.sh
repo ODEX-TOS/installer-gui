@@ -10,6 +10,9 @@ sed -i 's;/home/zeus;'$HOME';g' $HOME/.config/sway/config
 mkdir -p $HOME/.mozilla/firefox/tos.default
 cp $HOME/.config/tos/profiles.ini $HOME/.mozilla/firefox/profiles.ini
 cp -r $HOME/.config/tos/tos-firefox/* $HOME/.mozilla/firefox/tos.default
+
+yay -Syu --noconfirm zsh
+sudo chsh $USER -s /bin/zsh
 rm -rf $HOME/.oh-my.zsh
 curl https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o install.sh
 export RUNZSH=no
@@ -49,8 +52,6 @@ cd ~/.vim/bundle/YouCompleteMe
 python3 install.py --all
 sudo sh -c 'curl https://raw.githubusercontent.com/ODEX-TOS/tos-live/master/toslive/version-edit.txt > /etc/version'
 
-yay -Syu --noconfirm zsh
-sudo chsh $USER -s /bin/zsh
 
 sudo systemctl enable bluetooth
 sudo systemctl enable sshd
