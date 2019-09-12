@@ -190,7 +190,7 @@ Item {
                 group2.visible= false
                 group3.visible = true
             }else{
-             createSystem(locals.clicker, map.clicker, hostname.text, rootpwd.text);
+             createSystem(locals.clicker, map.clicker, rootpwd.text, hostname.text);
              advance()
             }
             id++;

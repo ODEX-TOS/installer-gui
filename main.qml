@@ -196,8 +196,8 @@ Window {
         }
         System {
             id: localsTab
-            function createSystem(local, keymap, hostname, password){
-                   yaml.setSystem(local, keymap, hostname, password);
+            function createSystem(local, keymap, password, hostname){
+                   yaml.setSystem(local, keymap, password, hostname);
             }
 
             function advance(){
