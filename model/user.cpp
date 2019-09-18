@@ -2,34 +2,34 @@
 
 namespace model {
 
-    user::user(QString name, QString password){
-        this->name = name;
-        this->password = password;
-    }
-    user::user(QString name, QString password, QString shell){
-        this->name = name;
-        this->password = password;
-        this->shell = shell;
-    }
+user::user(QString name, QString password) {
+    this->name = name;
+    this->password = password;
+}
+user::user(QString name, QString password, QString shell) {
+    this->name = name;
+    this->password = password;
+    this->shell = shell;
+}
 
-    QString user::getName(){
-        return this->name;
-    }
-    QString user::getPassword(){
-        return this->password;
-    }
+QString user::getName() {
+    return this->name;
+}
+QString user::getPassword() {
+    return this->password;
+}
 
-    QString user::getShell(){
-        return this->shell;
-    }
+QString user::getShell() {
+    return this->shell;
+}
 
-    QString user::toYaml(){
-        return "   - users:\n"
-               "       - user:\n"
-               "            name: \"" + this->name + "\"\n"
-               "            password: \"" + this->password + "\"\n";
-
-    }
-
+QString user::toYaml() {
+    return "   - users:\n"
+           "       - user:\n"
+           "            name: \""
+        + this->name + "\"\n"
+                       "            password: \""
+        + this->password + "\"\n";
+}
 
 }

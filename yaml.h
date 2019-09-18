@@ -9,19 +9,18 @@
 #include "model/system.h"
 #include "model/user.h"
 
-#include "model/resizepartition.h"
 #include "model/encryptedpartitions.h"
+#include "model/resizepartition.h"
 
 // The yaml class takes care of building objects to finally generate a yaml file
 // That yaml file can then be executed on the installer-backend
 // Finally the generated shell script (from the backend) can then be executed on the system
-class yaml : public QObject
-{
+class yaml : public QObject {
     Q_OBJECT
 public:
-    explicit yaml(QObject *parent = nullptr);
+    explicit yaml(QObject* parent = nullptr);
     // return a full yaml config
-    Q_INVOKABLE QString getConfig(){
+    Q_INVOKABLE QString getConfig() {
         setData();
         return this->data + this->getStandard();
     }
@@ -32,16 +31,16 @@ public:
     Q_INVOKABLE void setUser(QString name, QString password);
 
     // add partitions to a disk
-    Q_INVOKABLE void addPartition(unsigned long  disk, QString name, QString mountpoint, QString filesystem, QString start, QString end, int offset);
-    Q_INVOKABLE void addPartition(unsigned long  disk, QString name, QString mountpoint, QString filesystem, QString start, QString end);
+    Q_INVOKABLE void addPartition(unsigned long disk, QString name, QString mountpoint, QString filesystem, QString start, QString end, int offset);
+    Q_INVOKABLE void addPartition(unsigned long disk, QString name, QString mountpoint, QString filesystem, QString start, QString end);
 
     // add partitions that need to be resized
     // if you use this then your disk must be marked as bIsNewPartitionTable = false; otherwise you can't resize
-    Q_INVOKABLE void addResizePartition(unsigned long  disk, QString name, QString mountpoint, QString filesystem, QString size, int offset);
-    Q_INVOKABLE void addResizePartition(unsigned long  disk, QString name, QString mountpoint, QString filesystem, QString size);
+    Q_INVOKABLE void addResizePartition(unsigned long disk, QString name, QString mountpoint, QString filesystem, QString size, int offset);
+    Q_INVOKABLE void addResizePartition(unsigned long disk, QString name, QString mountpoint, QString filesystem, QString size);
 
-    Q_INVOKABLE void addEncryptionPartition(unsigned long  disk, unsigned long logicvolumeID, QString password, QString name, QString mountpoint, QString start, QString end, int offset);
-    Q_INVOKABLE void addEncryptionPartition(unsigned long  disk, unsigned long logicvolumeID, QString password, QString name, QString mountpoint, QString start, QString end);
+    Q_INVOKABLE void addEncryptionPartition(unsigned long disk, unsigned long logicvolumeID, QString password, QString name, QString mountpoint, QString start, QString end, int offset);
+    Q_INVOKABLE void addEncryptionPartition(unsigned long disk, unsigned long logicvolumeID, QString password, QString name, QString mountpoint, QString start, QString end);
 
     Q_INVOKABLE void addLogicVolume(unsigned long groupid, QString name, QString size, QString mountpoint);
 
@@ -53,8 +52,7 @@ public:
     QString getStandard();
 
     // generate the shell script
-    Q_INVOKABLE QString execute(QString file="run.sh");
-
+    Q_INVOKABLE QString execute(QString file = "run.sh");
 
 signals:
 
@@ -71,7 +69,6 @@ private:
     // the second index represent all the logic volumes
     std::vector<std::vector<model::logicvolume>> volumes;
 
-
     model::network network;
     model::system system;
     model::user user;
@@ -80,7 +77,6 @@ private:
     QString partitionDisks();
     QString formatDisks();
     QString mountDisks();
-
 };
 
 #endif // YAML_H
