@@ -30,6 +30,7 @@
   </p>
 </p>
 
+> This project is currently no longer maintained. Our gui installer is migrated to calamares. You can still install `TOS` using calamares or the installer-curses.
 
 
 <!-- TABLE OF CONTENTS -->
